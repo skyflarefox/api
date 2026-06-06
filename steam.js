@@ -22,7 +22,7 @@ export default async function handler(req, res) {
 
   try {
     const response = await fetch(
-      `https://store.steampowered.com/api/appdetails?appids=${appid}&filters=basic,screenshots`,
+      `https://store.steampowered.com/api/appdetails?appids=${appid}&filters=name,screenshots`,
       {
         headers: {
           // Faz a Steam aceitar a requisição vinda do servidor
