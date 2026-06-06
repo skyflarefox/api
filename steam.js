@@ -2,7 +2,7 @@ export default async function handler(req, res) {
   const { appid } = req.query;
 
   const response = await fetch(
-    `https://store.steampowered.com/api/appdetails?appids=${appid}&filters=basic,screenshots`
+    `https://store.steampowered.com/api/appdetails?appids=${appid}&filters=name,screenshots`
   );
 
   const data = await response.json();
