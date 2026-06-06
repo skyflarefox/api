@@ -1,9 +1,17 @@
-const response = await fetch(
-  `https://store.steampowered.com/api/appdetails?appids=${appid}&filters=name,screenshots`,
-  {
-    headers: {
-      'User-Agent': 'Mozilla/5.0 (compatible; SteamProxy/1.0)',
-      'Accept': 'application/json'
+export default async function handler(req, res) {
+    const { appid } = req.query;
+
+    if (!appid) {
+        return res.status(400).json({
+            error: "appid não informado"
+        });
     }
-  }
-);
+
+    const response = await fetch(
+        `https://store.steampowered.com/api/appdetails?appids=${appid}&filters=name,screenshots`
+    );
+
+    const data = await response.json();
+
+    return res.status(200).json(data);
+}
