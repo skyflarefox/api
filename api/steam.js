@@ -16,6 +16,9 @@ export default async function handler(req, res) {
       { headers: { "User-Agent": "Mozilla/5.0" } }
     );
     const data = await response.json();
+
+    // Cache de 1 hora — mesma requisição não bate no proxy de novo
+    res.setHeader("Cache-Control", "public, max-age=3600, s-maxage=3600");
     return res.status(200).json(data);
   } catch (e) {
     return res.status(500).json({ error: "Falha ao contatar a Steam" });
